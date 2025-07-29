@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { usePuterStore } from "~/lib/puter";
+import Summary from "~/components/Summary";
 import ATS from "~/components/ATS";
 import Details from "~/components/Details";
-import Summary from "~/components/Summary";
-import { usePuterStore } from "~/lib/puter";
 
 export const meta = () => [
-  { title: "Resumind | Review" },
+  { title: "Resumind | Review " },
   { name: "description", content: "Detailed overview of your resume" },
 ];
 
 const Resume = () => {
-  const { id } = useParams();
   const { auth, isLoading, fs, kv } = usePuterStore();
+  const { id } = useParams();
   const [imageUrl, setImageUrl] = useState("");
   const [resumeUrl, setResumeUrl] = useState("");
-  const [feedback, setFeedback] = useState("");
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,5 +93,4 @@ const Resume = () => {
     </main>
   );
 };
-
 export default Resume;
