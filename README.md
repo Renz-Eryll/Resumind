@@ -1,87 +1,69 @@
-# Welcome to React Router!
+<p align="center">
+  <img src="./public/resumind-thumbnail.png" alt="Resumind Thumbnail" width="800"/>
+</p>
 
-A modern, production-ready template for building full-stack React applications using React Router.
+##
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Puter.js-000000?style=for-the-badge&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
+</p>
 
-## Features
+<h1 align="center">📝 Resumind: AI-Powered Resume Analyzer</h1>
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+<p align="center">
+  <b>Resumind</b> is an AI-powered resume analyzer app that allows users to create job listings, upload resumes, and match them to job requirements. It leverages <b>React</b>, <b>Tailwind CSS</b>, <b>React Router</b>, and <b>Puter.js</b> to provide a fast and user-friendly experience.
+</p>
 
-## Getting Started
+---
 
-### Installation
+## ✨ Features
 
-Install the dependencies:
+- 📄 Upload and analyze resumes
+- 🏢 Create and manage job listings
+- 🤖 AI-powered matching between resumes and job requirements
+- 🎨 Clean and responsive UI with **Tailwind CSS**
+- ⚡ Fast and smooth experience with **React Router**
+
+---
+
+## 🌐 Demo
+
+🔗 **Live Demo**: [Resumind](https://resumind-app.vercel.app)
+
+---
+
+## ⚡ Quick Start
+
+Follow these steps to get a local copy of the project up and running.
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/Renz-Eryll/Resumind.git
+```
+
+### 2️⃣ Install dependencies
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+### 3️⃣ Start the development server
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+Open **http://localhost:5173** in your browser to view the portfolio 🚀
 
 ---
 
-Built with ❤️ using React Router.
+## 📧 Contact
+
+- **Name**: Renz Eryll Ramelo
+- **LinkedIn**: [www.linkedin.com/in/renz-eryll-ramelo](https://www.linkedin.com/in/renz-eryll-ramelo)
+- **GitHub**: [https://github.com/Renz-Eryll](https://github.com/Renz-Eryll)
