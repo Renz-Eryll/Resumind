@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/resumind-thumbnail.png" alt="Resumind Thumbnail" width="800"/>
+  <img src="./public/resumind-thumbnail.svg" alt="Resumind Thumbnail" width="800"/>
 </p>
 
 ##
