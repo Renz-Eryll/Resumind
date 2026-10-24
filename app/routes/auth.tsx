@@ -10,7 +10,9 @@ export const meta = () => [
 const Auth = () => {
   const { isLoading, auth } = usePuterStore();
   const location = useLocation();
-  const next = location.search.split("next=")[1];
+  // Only follow same-site paths ("/resume/1"), never "//host" or full URLs.
+  const nextParam = new URLSearchParams(location.search).get("next") ?? "";
+  const next = nextParam.startsWith("/") && !nextParam.startsWith("//") ? nextParam : "/";
   const navigate = useNavigate();
 
   useEffect(() => {
