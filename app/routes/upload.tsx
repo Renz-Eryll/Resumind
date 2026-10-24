@@ -13,6 +13,7 @@ const Upload = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [statusText, setStatusText] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState("");
 
   const handleFileSelect = (file: File | null) => {
     setFile(file);
@@ -32,20 +33,27 @@ const Upload = () => {
     setIsProcessing(true);
     setStatusText("Uploading the file...");
 
+    // Show the error and bring the form back so the user can retry.
+    const fail = (message: string) => {
+      setStatusText("");
+      setError(message);
+      setIsProcessing(false);
+    };
+    setError("");
+
     const uploadedFile = await fs.upload([file]);
 
-    if (!uploadedFile) return setStatusText("Error: Failed to upload file");
+    if (!uploadedFile) return fail("Failed to upload the file. Please try again.");
 
     setStatusText("Converting to image...");
 
     const imageFile = await convertPdfToImage(file);
 
-    if (!imageFile.file)
-      return setStatusText("Error: Failed to convert PDF to image");
+    if (!imageFile.file) return fail("Couldn't read that PDF. Try another file.");
 
     setStatusText("Uploading image...");
     const uploadedImage = await fs.upload([imageFile.file]);
-    if (!uploadedImage) return setStatusText("Error: Failed to upload image");
+    if (!uploadedImage) return fail("Failed to upload the preview image. Please try again.");
 
     setStatusText("Preparing data...");
 
@@ -61,7 +69,7 @@ const Upload = () => {
       feedback: "",
     };
 
-    await kv.set(`resume.${uuid}`, JSON.stringify(data));
+    await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
     setStatusText("Analyzing...");
 
@@ -70,14 +78,19 @@ const Upload = () => {
       prepareInstructions({ jobTitle, jobDescription })
     );
 
-    if (!feedback) return setStatusText("Error: Failed to analyze resume");
+    if (!feedback) return fail("The analysis failed. Please try again.");
 
     const feedbackText =
       typeof feedback.message.content == "string"
         ? feedback.message.content
         : feedback.message.content[0].text;
 
-    data.feedback = JSON.parse(feedbackText);
+    try {
+      // Models sometimes wrap JSON in a markdown code fence.
+      data.feedback = JSON.parse(feedbackText.replace(/^\s*```(?:json)?\s*|\s*```\s*$/g, ""));
+    } catch {
+      return fail("The analysis came back in an unexpected format. Please try again.");
+    }
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
     setStatusText("Analysis complete, redirecting...");
@@ -114,6 +127,11 @@ const Upload = () => {
             </>
           ) : (
             <h2> Drop your resume for an ATS score and improvement tips</h2>
+          )}
+          {error && !isProcessing && (
+            <p role="alert" className="mt-4 text-red-600">
+              {error}
+            </p>
           )}
           {!isProcessing && (
             <form
